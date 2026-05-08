@@ -71,7 +71,7 @@ const polarities = [...new Set(mods.map(m => m.polarity).filter(Boolean))].sort(
 const rarities = [...new Set(mods.map(m => m.rarity).filter(Boolean))].sort();
 const types = [...new Set(mods.map(m => m.type).filter(Boolean))].sort();
 
-const DATA = { mods, searchIndex, polarities, rarities, types, locales: ['en', ...LOCALES], localeLabels: LOCALE_LABELS };
+const DATA = { mods, searchIndex, polarities, rarities, types, locales: ['en', ...LOCALES], localeLabels: LOCALE_LABELS, builtAt: new Date().toISOString() };
 const dataJson = JSON.stringify(DATA);
 
 const html = `<!DOCTYPE html>
@@ -555,6 +555,10 @@ const html = `<!DOCTYPE html>
     color: var(--muted); font-size: .62rem; font-family: 'Orbitron', monospace;
     letter-spacing: .12em; text-transform: uppercase;
   }
+  .landing-updated {
+    color: var(--muted); font-size: .58rem; font-family: 'Orbitron', monospace;
+    letter-spacing: .1em; text-transform: uppercase; margin-top: -10px;
+  }
 
   /* ─── Empty state ────────────────────────────────────────────── */
   .empty {
@@ -954,6 +958,7 @@ function renderLanding() {
   </div>
   <button class="btn-show-all" id="btn-show-all">Show All Mods</button>
   <div class="landing-hint">or press Ctrl+K to search</div>
+  <div class="landing-updated">last updated \${new Date(DATA.builtAt).toLocaleString('en-GB', { year: 'numeric', month: 'short', day: '2-digit', hour: '2-digit', minute: '2-digit', timeZoneName: 'short' })}</div>
 </div>\`;
   document.getElementById('btn-show-all').addEventListener('click', () => {
     state.showAll = true;
