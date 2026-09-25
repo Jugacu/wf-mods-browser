@@ -6,6 +6,6 @@
     "build": "node build.js"
   },
   "dependencies": {
-    "@wfcd/items": "^1.1276.1"
+    "@wfcd/items": "^1.1276.4"
   }
 }
